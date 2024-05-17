@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!--以下是禁止缓存，否则磁盘容量不会及时更新-->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+ 
+    <!--1.延迟加载，以下内容都要放到延迟加载内-->
+    <div id="customize" style="display: none;">  
+ 
+        <!--2.显示txt内容-->
+          <div id="content" style="text-align: center ; "></div>
+        
+        <!--3.隐藏版权、管理，移除搜索栏中的键盘图标-->
+        <style>
+            /*隐藏版权*/
+            .footer span,.footer a:nth-of-type(1){
+                display:none;
+            }
+ 
+            /*隐藏管理字眼*/
+            .footer span,.footer a:nth-of-type(2){
+                display:none;
+            }
+            /*移除搜索栏中的键盘图*/
+            .hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-ihYBJPK-css {
+                display: none !important;
+            }
+        </style>
+ 
+        <!-- 4.增加底部文字 -->
+        <div style="text-align: center ; ">
+        <p align="center">
+        <a target="_blank" href="https://alist.nn.ci/zh/" > © Powered by AList</a>
+        <span>|</span>
+        <a target="_blank" href="/@manage" >管理</a>
+        </p>
+        </div>
+        </div>
+ 
+<!--下面是配套的JS-->
+ 
+<!--1.延迟加载配套使用JS-->
+<script>
+    let interval = setInterval(() => {
+        if (document.querySelector(".footer")) {
+            document.querySelector("#customize").style.display = "";
+            clearInterval(interval);
+        }
+    }, 200);
+</script>
+ 
+<!--2.显示txt内容配套使用JS-->
+  <script>
+    // 创建 XMLHttpRequest 对象
+    var xhttp = new XMLHttpRequest();
+    
+    // 设置请求方式和文件路径，注意此处的网址为TXT文件的下载地址
+    xhttp.open("GET", "https://www.网址.com/xx.txt", true);
+    
+    // 定义请求完成时的回调函数
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // 将读取的文本内容存储到变量中
+        var text = this.responseText;
+        
+        // 将文本内容插入到 HTML 页面中
+ 
+        document.getElementById("content").innerHTML = text;
+      }
+    };
+    
+    // 发送请求
+    xhttp.send();
+  </script>
+</head>
