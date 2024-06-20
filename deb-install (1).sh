@@ -12,9 +12,7 @@ case "${ARCH_RAW}" in
     *)          echo "Unsupported architecture: ${ARCH_RAW}"; exit 1;;
 esac
 
-VERSION=1.9.0
-
-curl -Lo sing-box.deb "https://github.com/SagerNet/sing-box/releases/download/v${VERSION}/sing-box_${VERSION}_linux_${ARCH}.deb"
+curl -Lo sing-box.deb "https://github.com/SagerNet/sing-box/releases/download/v1.9.0/sing-box_1.9.0_linux_${ARCH}.deb"
 sudo dpkg -i sing-box.deb
 rm sing-box.deb
 
