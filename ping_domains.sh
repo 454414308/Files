@@ -9,10 +9,18 @@ if [ ! -f "$DOMAIN_FILE" ]; then
   exit 1
 fi
 
-# 读取域名并进行批量 ping
+# 批量 ping 并提取平均响应时间
 while IFS= read -r domain
 do
   echo "Pinging $domain ..."
-  ping -c 10 "$domain"
+  
+  # 执行ping命令并提取平均时间
+  avg_time=$(ping -c 10 "$domain" | awk -F'/' 'END{ print $5 }')
+
+  if [ -z "$avg_time" ]; then
+    echo "$domain: 无法解析域名或网络连接错误"
+  else
+    echo "$domain 的平均响应时间: $avg_time ms"
+  fi
   echo "--------------------------------------"
 done < "$DOMAIN_FILE"
